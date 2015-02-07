@@ -12,7 +12,10 @@
     "list",
     "node"
   ],
-  "author": "Andreas Leidig",
+  "author":  {
+    "name": "Andreas Leidig",
+    "web": "https://github.com/leider"
+  },
   "license": {
     "type": "MIT",
     "url": "http://www.opensource.org/licenses/MIT"
