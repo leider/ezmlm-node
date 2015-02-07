@@ -21,7 +21,7 @@ describe('listing users', function () {
     expect(execStub.args[0][0]).to.be('ezmlm-list /fqHomedirectory/ezmlm/someCrazyName');
   });
 
-  it('creates an arry from stdout', function (done) {
+  it('creates an array from stdout', function (done) {
     execStub.callsArgWith(1, null, 'someuser@domain.org\nsomeother@domain.org');
     ezmlm.usersOfList('someCrazyName', function (error, users) {
       expect(users).to.be.an.array();
