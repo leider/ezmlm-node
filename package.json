@@ -1,0 +1,39 @@
+{
+  "name": "node-ezmlm",
+  "version": "0.0.1",
+  "description": "Manage ezmlm via JavaScript",
+  "main": "lib",
+  "scripts": {
+    "test": "grunt"
+  },
+  "keywords": [
+    "ezmlm",
+    "mailing",
+    "list",
+    "node"
+  ],
+  "author": "Andreas Leidig",
+  "license": {
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/MIT"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "lodash": "3.1.0"
+  },
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-contrib-clean": "0.6.0",
+    "grunt-jslint": "1.1.12",
+    "grunt-mocha-istanbul": "2.2.0",
+    "must": "0.12.0",
+    "proxyquire": "1.3.1",
+    "sinon": "1.12.2"
+  },
+  "scripts": {
+    "test": "grunt tests"
+  }
+}
+

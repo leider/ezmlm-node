@@ -1,0 +1,8 @@
+node_modules/
+coverage/
+
+.idea/workspace.xml
+
+.idea/vcs.xml
+
+.idea/scopes/scope_settings.xml
