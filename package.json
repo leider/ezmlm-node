@@ -12,6 +12,10 @@
     "list",
     "node"
   ],
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/leider/ezmlm-node"
+  },
   "author":  {
     "name": "Andreas Leidig",
     "web": "https://github.com/leider"
