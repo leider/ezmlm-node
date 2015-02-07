@@ -15,7 +15,6 @@ describe('un-/subscribing users', function () {
     ezmlm = proxyquire('../lib/commands', {'./ezmlmExec': {perform: execStub}})('/fqHomedirectory', 'derleider.de');
   });
 
-
   it('creates the correct command string for subscription', function () {
     ezmlm.subscribeUserToList('someuser@domain.org', 'someCrazyName');
     expect(execStub.args[0][0]).to.be('ezmlm-sub /fqHomedirectory/ezmlm/someCrazyName someuser@domain.org');
