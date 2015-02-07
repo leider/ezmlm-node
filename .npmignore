@@ -1,0 +1,7 @@
+.travis.yml
+.idea/
+Gruntfile.js
+
+coverage/
+node_modules/
+spec/
