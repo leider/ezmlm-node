@@ -18,11 +18,11 @@ describe('getting all lists', function () {
 
   it('creates the correct command string', function () {
     ezmlm.allLists();
-    expect(execStub.args[0][0]).to.be('ls /fqHomedirectory');
+    expect(execStub.args[0][0]).to.be('ls /fqHomedirectory/ezmlm/');
   });
 
   it('creates an array from stdout', function (done) {
-    execStub.callsArgWith(1, null, 'list1 list2');
+    execStub.callsArgWith(1, null, 'list1  list2');
     ezmlm.allLists(function (error, lists) {
       expect(lists).to.be.an.array();
       expect(lists).to.have.length(2);
