@@ -65,4 +65,28 @@ describe('top level functions', function () {
 
 });
 
+describe('setting custom ezmlmrc', function () {
+  var
+    flags,
+    ezmlm,
+    execSpy;
+
+  beforeEach(function () {
+    flags = flagsFactory();
+    execSpy = sinon.spy();
+    ezmlm = proxyquire('../lib/commands', {'./ezmlmExec': {perform: execSpy}})('/fqHomedirectory', 'derleider.de', 'ezmlmrc-custom');
+  });
+
+  it('works with create', function () {
+    ezmlm.createListNamed('someCrazyName', flags);
+    expect(execSpy.args[0][0]).to.be('ezmlm-make -abDEfgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName /fqHomedirectory/.qmail-someCrazyName someCrazyName derleider.de');
+  });
+
+  it('works with edit', function () {
+    ezmlm.editListNamed('someCrazyName', flags);
+    expect(execSpy.args[0][0]).to.be('ezmlm-make -abDefgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName');
+  });
+
+});
+
 
