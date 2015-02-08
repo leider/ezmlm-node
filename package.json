@@ -1,6 +1,6 @@
 {
   "name": "ezmlm-node",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Manage ezmlm via JavaScript",
   "main": "lib/commands",
   "scripts": {
