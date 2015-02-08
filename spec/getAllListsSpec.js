@@ -22,7 +22,7 @@ describe('getting all lists', function () {
   });
 
   it('creates an array from stdout', function (done) {
-    execStub.callsArgWith(1, null, 'list1  list2');
+    execStub.callsArgWith(1, null, 'list1\nlist2');
     ezmlm.allLists(function (error, lists) {
       expect(lists).to.be.an.array();
       expect(lists).to.have.length(2);
