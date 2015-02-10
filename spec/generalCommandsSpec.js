@@ -97,7 +97,7 @@ describe('setting custom ezmlmrc', function () {
     });
   });
 
-  it('works shows errors', function (done) {
+  it('shows errors', function (done) {
     execStub.onFirstCall().callsArgWith(1, new Error('Ooops'));
     ezmlm.createListNamed('someCrazyName', flags, 'p r e f i x', function () {
       expect(execStub.calledOnce).to.be(true);
