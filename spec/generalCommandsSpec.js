@@ -69,22 +69,31 @@ describe('setting custom ezmlmrc', function () {
   var
     flags,
     ezmlm,
-    execSpy;
+    execStub;
 
   beforeEach(function () {
     flags = flagsFactory();
-    execSpy = sinon.spy();
-    ezmlm = proxyquire('../lib/index', {'./ezmlmExec': {perform: execSpy}})('/fqHomedirectory', 'derleider.de', 'ezmlmrc-custom');
+    execStub = sinon.stub();
+    execStub.callsArgWith(1, null);
+    ezmlm = proxyquire('../lib/index', {'./ezmlmExec': {perform: execStub}})('/fqHomedirectory', 'derleider.de', 'ezmlmrc-custom');
   });
 
-  it('works with create', function () {
-    ezmlm.createListNamed('someCrazyName', flags);
-    expect(execSpy.args[0][0]).to.be('ezmlm-make -abDEfgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName /fqHomedirectory/.qmail-someCrazyName someCrazyName derleider.de');
+  it('works with create', function (done) {
+    ezmlm.createListNamed('someCrazyName', flags, 'p r e f i x', function () {
+      expect(execStub.calledTwice).to.be(true);
+      expect(execStub.args[0][0]).to.be('ezmlm-make -abDEfgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName /fqHomedirectory/.qmail-someCrazyName someCrazyName derleider.de');
+      expect(execStub.args[1][0]).to.be('> /fqHomedirectory/ezmlm/someCrazyName/prefix && echo "p r e f i x" >> /fqHomedirectory/ezmlm/someCrazyName/prefix');
+      done();
+    });
   });
 
-  it('works with edit', function () {
-    ezmlm.editListNamed('someCrazyName', flags);
-    expect(execSpy.args[0][0]).to.be('ezmlm-make -abDefgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName');
+  it('works with edit', function (done) {
+    ezmlm.editListNamed('someCrazyName', flags, 'p r e f i x', function () {
+      expect(execStub.calledTwice).to.be(true);
+      expect(execStub.args[0][0]).to.be('ezmlm-make -abDefgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName');
+      expect(execStub.args[1][0]).to.be('> /fqHomedirectory/ezmlm/someCrazyName/prefix && echo "p r e f i x" >> /fqHomedirectory/ezmlm/someCrazyName/prefix');
+      done();
+    });
   });
 
 });
