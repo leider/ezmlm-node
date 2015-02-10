@@ -82,7 +82,7 @@ describe('setting custom ezmlmrc', function () {
     ezmlm.createListNamed('someCrazyName', flags, 'p r e f i x', function () {
       expect(execStub.calledTwice).to.be(true);
       expect(execStub.args[0][0]).to.be('ezmlm-make -abDEfgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName /fqHomedirectory/.qmail-someCrazyName someCrazyName derleider.de');
-      expect(execStub.args[1][0]).to.be('> /fqHomedirectory/ezmlm/someCrazyName/prefix && echo "p r e f i x" >> /fqHomedirectory/ezmlm/someCrazyName/prefix');
+      expect(execStub.args[1][0]).to.be('echo "[p r e f i x]" > /fqHomedirectory/ezmlm/someCrazyName/prefix');
       done();
     });
   });
@@ -92,7 +92,7 @@ describe('setting custom ezmlmrc', function () {
     ezmlm.editListNamed('someCrazyName', flags, 'p r e f i x', function () {
       expect(execStub.calledTwice).to.be(true);
       expect(execStub.args[0][0]).to.be('ezmlm-make -abDefgHIJLMNOPRSTu -C /fqHomedirectory/ezmlmrc-custom /fqHomedirectory/ezmlm/someCrazyName');
-      expect(execStub.args[1][0]).to.be('> /fqHomedirectory/ezmlm/someCrazyName/prefix && echo "p r e f i x" >> /fqHomedirectory/ezmlm/someCrazyName/prefix');
+      expect(execStub.args[1][0]).to.be('echo "[p r e f i x]" > /fqHomedirectory/ezmlm/someCrazyName/prefix');
       done();
     });
   });
