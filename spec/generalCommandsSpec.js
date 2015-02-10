@@ -15,7 +15,7 @@ describe('top level functions', function () {
   beforeEach(function () {
     flags = flagsFactory();
     execSpy = sinon.spy();
-    ezmlm = proxyquire('../lib/commands', {'./ezmlmExec': {perform: execSpy}})('/fqHomedirectory', 'derleider.de');
+    ezmlm = proxyquire('../lib/index', {'./ezmlmExec': {perform: execSpy}})('/fqHomedirectory', 'derleider.de');
   });
 
   describe('creating a list', function () {
@@ -74,7 +74,7 @@ describe('setting custom ezmlmrc', function () {
   beforeEach(function () {
     flags = flagsFactory();
     execSpy = sinon.spy();
-    ezmlm = proxyquire('../lib/commands', {'./ezmlmExec': {perform: execSpy}})('/fqHomedirectory', 'derleider.de', 'ezmlmrc-custom');
+    ezmlm = proxyquire('../lib/index', {'./ezmlmExec': {perform: execSpy}})('/fqHomedirectory', 'derleider.de', 'ezmlmrc-custom');
   });
 
   it('works with create', function () {

@@ -12,7 +12,7 @@ describe('getting all lists', function () {
 
   beforeEach(function () {
     execStub = sinon.stub();
-    ezmlm = proxyquire('../lib/commands', {'./ezmlmExec': {perform: execStub}})('/fqHomedirectory', 'derleider.de');
+    ezmlm = proxyquire('../lib/index', {'./ezmlmExec': {perform: execStub}})('/fqHomedirectory', 'derleider.de');
   });
 
 
