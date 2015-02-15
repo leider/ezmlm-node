@@ -12,7 +12,7 @@ describe('the options', function () {
   });
 
   it('can transform itself to commandline flags', function () {
-    expect(flags.asFlags()).to.be('abDEfgHIJLMNOPRSTu');
+    expect(flags.asFlags()).to.be('abDEfgHIJLMNOPRsTu');
   });
 
   it('can enable digesting', function () {
