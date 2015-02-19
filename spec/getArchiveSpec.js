@@ -17,7 +17,7 @@ describe('getting archived mails', function () {
 
   it('creates the right command', function () {
     ezmlm.archivedMails('someCrazyName', 365);
-    expect(execStub.args[0][0]).to.be('find /fqHomedirectory/ezmlm/someCrazyName/archive ! -name index -ctime -365');
+    expect(execStub.args[0][0]).to.be('find /fqHomedirectory/ezmlm/someCrazyName/archive ! -name index -type f -ctime -365');
   });
 
   it('creates an array from stdout', function (done) {
@@ -43,9 +43,9 @@ describe('getting archived mails', function () {
 
   it('handles empty result from cmd line', function (done) {
     execStub.callsArgWith(1, null, '');
-    ezmlm.usersOfList('someCrazyName', function (error, users) {
-      expect(users).to.be.an.array();
-      expect(users).to.be.empty();
+    ezmlm.archivedMails('someCrazyName', 365, function (error, lists) {
+      expect(lists).to.be.an.array();
+      expect(lists).to.be.empty();
       done(error);
     });
   });
