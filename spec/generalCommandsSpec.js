@@ -61,13 +61,6 @@ describe('top level functions', function () {
       expect(execSpy.args[0][0]).to.be('ezmlm-make -5 owner@derleider.de -abDefgHIJLmNOPRsTU /fqHomedirectory/ezmlm/someCrazyName');
     });
   });
-
-  describe('listing the archive', function () {
-    it('creates the right command', function () {
-      ezmlm.archivedMails('someCrazyName', 365);
-      expect(execSpy.args[0][0]).to.be('find /fqHomedirectory/ezmlm/someCrazyName/archive ! -name index -ctime -365');
-    });
-  });
 });
 
 describe('setting custom ezmlmrc', function () {
