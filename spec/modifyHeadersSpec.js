@@ -2,7 +2,6 @@
 
 var
   sinon = require('sinon'),
-  proxyquire = require('proxyquire'),
   expect = require('must');
 
 describe('Changing replyTo', function () {
@@ -12,7 +11,7 @@ describe('Changing replyTo', function () {
 
   beforeEach(function () {
     execStub = sinon.stub();
-    modifyHeaders = proxyquire('../lib/modifyHeaders', {'./ezmlmExec': {perform: execStub}})('/fqHomedirectory', 'derleider.de');
+    modifyHeaders = require('../lib/modifyHeaders')('/fqHomedirectory', {perform: execStub});
   });
 
   it('creates the right commands for reply to list', function (done) {
