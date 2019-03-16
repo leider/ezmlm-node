@@ -1,39 +1,15 @@
+'use strict';
 module.exports = function (grunt) {
-  'use strict';
-
-  // set up common objects for jslint
-  var jsLintStandardOptions = {edition: 'latest', errorsOnly: true, failOnError: true},
-
-    libDirectives = function () {
-      return {indent: 2, node: true, nomen: true, todo: true, unparam: true, vars: true};
-    },
-    jsLintLibDirectives = libDirectives(),
-    jsLintLibTestDirectives = libDirectives();
-  jsLintLibTestDirectives.ass = true;
-  jsLintLibTestDirectives.predef = ['afterEach', 'after', 'beforeEach', 'before', 'describe', 'it'];
-
+  /*eslint camelcase: 0*/
   grunt.initConfig({
     clean: {
       coverage: ['coverage'],
       options: {force: true}
     },
-    jslint: {
-      lib: {
-        src: [
-          'lib/**/*.js'
-        ],
-        directives: jsLintLibDirectives,
-        options: jsLintStandardOptions
-      },
-      libtests: {
-        src: [
-          'spec/**/*.js'
-        ],
-        directives: jsLintLibTestDirectives,
-        options: jsLintStandardOptions
-      }
+    eslint: {
+      options: {quiet: true},
+      target: ['**/*.js']
     },
-
     mocha_istanbul: {
       test: {
         src: 'spec',
@@ -56,9 +32,9 @@ module.exports = function (grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-mocha-istanbul');
-  grunt.loadNpmTasks('grunt-jslint');
+  grunt.loadNpmTasks('grunt-eslint');
 
-  grunt.registerTask('tests', ['clean', 'jslint', 'mocha_istanbul']);
+  grunt.registerTask('tests', ['clean', 'eslint', 'mocha_istanbul']);
 
   // Default task.
   grunt.registerTask('default', ['tests']);
